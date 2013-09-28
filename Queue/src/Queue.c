@@ -60,7 +60,8 @@ void displayEnhancedCircularArrayQueue(CircularArrayQueue t);
 void insertLinkedListQueue(LinkedListQueue *p, int v);
 int deleteLinledListQueue(LinkedListQueue *p);
 void displayLinkedListQueue(LinkedListQueue t);
-
+void insertLinkedListDeQueue(LinkedListQueue *p, int v);
+int deleteLinkedListDequeue(LinkedListQueue *p);
 
 int main(void) {
 	ArrayQueue aq,caq;
@@ -80,7 +81,7 @@ int main(void) {
 
 	lq.front = lq.rear = NULL;
 
-	printf("Enter choice : \n1 to insert to Array Queue\n2 to delete from Array Queue\n3 to display Array Queue\n4 for insert to Circular Array Queue\n5 for delete from Circular Array Queue\n6 for display Circular Array Queue\n7 for insert to Enhanced Circular Array Queue\n8 for delete from Enhanced Cicrular Array Queue\n9 for display Enhanced Circular Array Queue\n10 for insert to Linked List Queue\n11 to delete from Linked List Queue\n12 for displaying Linked List Queue\n");
+	printf("Enter choice : \n1 to insert to Array Queue\n2 to delete from Array Queue\n3 to display Array Queue\n4 for insert to Circular Array Queue\n5 for delete from Circular Array Queue\n6 for display Circular Array Queue\n7 for insert to Enhanced Circular Array Queue\n8 for delete from Enhanced Cicrular Array Queue\n9 for display Enhanced Circular Array Queue\n10 for insert to Linked List Queue\n11 to delete from Linked List Queue\n12 for displaying Linked List Queue\n13 for Deque Insert from end\n14 for Deque delete from rear\n");
 
 	do{
 		printf("Enter Choice : ");
@@ -160,6 +161,20 @@ int main(void) {
 			displayLinkedListQueue(lq);
 
 			break;
+		case 13:
+			printf("Enter an element : ");
+			scanf("%d", &ele);
+
+			insertLinkedListDeQueue(&lq, ele);
+
+
+			break;
+		case 14:
+
+			ele = deleteLinledListDeQueue(&lq);
+			printf("%d\n",ele);
+
+		       break;
 		default:
 			break;
 		}
@@ -304,6 +319,25 @@ void insertLinkedListQueue(LinkedListQueue *p, int v){
 
 }
 
+void insertLinkedListDeQueue(LinkedListQueue *p, int v){
+
+	Node *newNode = NULL;
+	newNode = (Node*) calloc(1, sizeof(Node));
+
+	newNode->data = v;
+
+	if(p->rear == NULL){
+		p->rear = newNode;
+		p->front = newNode;
+	}
+	else{
+		newNode->next = p->front;
+		p->front = newNode;
+
+	}
+
+}
+
 int deleteLinledListQueue(LinkedListQueue *p){
 
 	if(p->front == NULL){
@@ -324,6 +358,29 @@ int deleteLinledListQueue(LinkedListQueue *p){
 		return v;
 	}
 }
+
+int deleteLinledListQueue(LinkedListQueue *p){
+
+	if(p->front == NULL){
+		return -1;
+	}
+	else{
+		int v = p->front->data;
+
+		Node *temp = p->front;
+		p->front = p->front->next;
+
+		if(p->front == NULL){
+			p->rear = NULL;
+		}
+
+		free(temp);
+
+		return v;
+	}
+}
+
+
 
 void displayLinkedListQueue(LinkedListQueue t){
 
