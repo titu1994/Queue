@@ -361,20 +361,24 @@ int deleteLinkedListQueue(LinkedListQueue *p){
 
 int deleteLinkedListDeQueue(LinkedListQueue *p){
 
-	if(p->rear == NULL){
+	if(p->front == NULL){
 		return -1;
 	}
 	else{
 		int v = p->rear->data;
-
-		Node *temp = p->rear;
-		p->rear = p->rear->next;
-
-		if(p->rear == NULL){
-			p->front = NULL;
+		
+		Node *t = p->rear;
+		Node temp = p->rear,previous;
+		
+		while(temp.front != NULL){
+			previous = temp;
+			
+			t.front = t.front->next;
 		}
+		
+		p->rear = previous;
 
-		free(temp);
+		free(t);
 
 		return v;
 	}
