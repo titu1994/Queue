@@ -338,7 +338,7 @@ void insertLinkedListDeQueue(LinkedListQueue *p, int v){
 
 }
 
-int deleteLinledListQueue(LinkedListQueue *p){
+int deleteLinkedListQueue(LinkedListQueue *p){
 
 	if(p->front == NULL){
 		return -1;
@@ -359,19 +359,19 @@ int deleteLinledListQueue(LinkedListQueue *p){
 	}
 }
 
-int deleteLinledListQueue(LinkedListQueue *p){
+int deleteLinkedListDeQueue(LinkedListQueue *p){
 
-	if(p->front == NULL){
+	if(p->rear == NULL){
 		return -1;
 	}
 	else{
-		int v = p->front->data;
+		int v = p->rear->data;
 
-		Node *temp = p->front;
-		p->front = p->front->next;
+		Node *temp = p->rear;
+		p->rear = p->rear->next;
 
-		if(p->front == NULL){
-			p->rear = NULL;
+		if(p->rear == NULL){
+			p->front = NULL;
 		}
 
 		free(temp);
